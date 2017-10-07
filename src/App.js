@@ -19,7 +19,11 @@ class App extends Component {
           }}
         />
 
-        <table>
+        <table
+          style={{
+            width: '100%'
+          }}
+        >
           <thead>
             <tr>
               {
