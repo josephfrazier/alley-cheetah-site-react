@@ -97,104 +97,123 @@ class App extends Component {
           You can also <button onClick={() => this.clearForm()}>clear the form</button>.
         </p>
 
-        <SimpleForm
-          inputProps={{
-            value: this.state.origin,
-            onChange: address => this.setState({ origin: address }),
-            placeholder: 'Origin'
-          }}
-        />
-
-        <SimpleForm
-          inputProps={{
-            value: this.state.destination,
-            onChange: address => this.setState({ destination: address }),
-            placeholder: 'Destination'
-          }}
-        />
-
-        <table
+        <form
           style={{
-            width: '100%'
+            padding: '1rem'
           }}
         >
-          <thead>
-            <tr>
-              {
-                ['', ...this.cols].map(col => (
-                  <th key={col}>{col}</th>
-                ))
-              }
-            </tr>
-          </thead>
+          <fieldset>
+            <legend>Origin/Destination:</legend>
 
-          <tbody>
-            {
-              this.rows.map(row => (
-                <tr key={row}>
-                  <th>{row}</th>
+            <SimpleForm
+              inputProps={{
+                value: this.state.origin,
+                onChange: address => this.setState({ origin: address }),
+                placeholder: 'Origin'
+              }}
+            />
+
+            <SimpleForm
+              inputProps={{
+                value: this.state.destination,
+                onChange: address => this.setState({ destination: address }),
+                placeholder: 'Destination'
+              }}
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Waypoints:</legend>
+
+            <table
+              style={{
+                width: '100%'
+              }}
+            >
+              <thead>
+                <tr>
                   {
-                    this.cols.map(col => (
-                      <td key={col}>
-                        <SimpleForm
-                          inputProps={{
-                            value: this.state[row + col],
-                            onChange: address => this.setState({ [row + col]: address }),
-                            placeholder: row + col
-                          }}
-                        />
-                      </td>
+                    ['', ...this.cols].map(col => (
+                      <th key={col}>{col}</th>
                     ))
                   }
                 </tr>
+              </thead>
+
+              <tbody>
+                {
+                  this.rows.map(row => (
+                    <tr key={row}>
+                      <th>{row}</th>
+                      {
+                        this.cols.map(col => (
+                          <td key={col}>
+                            <SimpleForm
+                              inputProps={{
+                                value: this.state[row + col],
+                                onChange: address => this.setState({ [row + col]: address }),
+                                placeholder: row + col
+                              }}
+                            />
+                          </td>
+                        ))
+                      }
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </fieldset>
+
+          <fieldset>
+            <legend>Baby Food Drop-off Points (intermediate stops that can't be the first stop):</legend>
+
+            {
+              [1, 2].map(n => (
+                <SimpleForm
+                  key={n}
+                  inputProps={{
+                    value: this.state['babyFood' + n],
+                    onChange: address => this.setState({ ['babyFood' + n]: address }),
+                    placeholder: 'Baby Food Stop ' + n
+                  }}
+                />
               ))
             }
-          </tbody>
-        </table>
+          </fieldset>
 
-        {
-          [1, 2].map(n => (
-            <SimpleForm
-              key={n}
-              inputProps={{
-                value: this.state['babyFood' + n],
-                onChange: address => this.setState({ ['babyFood' + n]: address }),
-                placeholder: 'Baby Food Stop ' + n
-              }}
-            />
-          ))
-        }
+          {
+            this.state.loading ? (
+              <p>Loading</p>
+            ) : this.state.responseBody ? (
+              <ul
+                style={{
+                  listStyle: 'none'
+                }}
+              >
+                {
+                  this.state.responseBody.map(({link, description, routeSortKey, humanizedDistance, humanizedDuration}, i) => (
+                    <li key={link + routeSortKey}>
+                      <a href={link}>
+                        {description} {routeSortKey} ({humanizedDistance}, {humanizedDuration})
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            ) : ''
+          }
 
-        {
-          this.state.loading ? (
-            <p>Loading</p>
-          ) : this.state.responseBody ? (
-            <ul
-              style={{
-                listStyle: 'none'
-              }}
-            >
-              {
-                this.state.responseBody.map(({link, description, routeSortKey, humanizedDistance, humanizedDuration}, i) => (
-                  <li key={link + routeSortKey}>
-                    <a href={link}>
-                      {description} {routeSortKey} ({humanizedDistance}, {humanizedDuration})
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          ) : ''
-        }
-
-        <button
-          onClick={() => this.onSubmit(this)}
-          style={{
-            width: '100%'
-          }}
-        >
-          Submit
-        </button>
+          <button
+            type='button'
+            onClick={() => this.onSubmit(this)}
+            style={{
+              width: '100%'
+            }}
+          >
+            Submit
+          </button>
+        </form>
       </div>
     );
   }
