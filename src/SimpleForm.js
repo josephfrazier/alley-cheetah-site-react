@@ -16,11 +16,14 @@ class SimpleForm extends React.Component {
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      ref: 'searchInput',
     }, this.props.inputProps)
 
     return (
       <PlacesAutocomplete
         inputProps={inputProps}
+        ref="placesAutocomplete"
+        onEnterKeyDown={() => this.refs.placesAutocomplete.refs.searchInput.blur()}
         styles={{
           root: this.state.focused ? {
             position: 'fixed',
