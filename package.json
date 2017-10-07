@@ -9,9 +9,13 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
+    "localtunnel": "while true; do lt --port 3000 --subdomain alleycheetah; done",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.8.3"
   }
 }
