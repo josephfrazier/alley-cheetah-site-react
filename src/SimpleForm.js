@@ -30,9 +30,10 @@ class SimpleForm extends React.Component {
             zIndex: 1,
           } : {},
 
-          input: this.state.focused ? {
-            background: 'lightyellow',
-          } : {},
+          input: {
+            boxSizing: 'border-box',
+            ...(this.state.focused ? {background: 'lightyellow'} : {}),
+          },
         }}
       />
     )
