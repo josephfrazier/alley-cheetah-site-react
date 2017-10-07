@@ -11,12 +11,12 @@ class SimpleForm extends React.Component {
   }
 
   render() {
-    const inputProps = Object.assign({}, this.props.inputProps, {
+    const inputProps = Object.assign({
       value: this.state.address,
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-    })
+    }, this.props.inputProps)
 
     return (
       <PlacesAutocomplete
