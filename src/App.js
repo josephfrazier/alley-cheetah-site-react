@@ -113,6 +113,8 @@ class App extends Component {
               }}
             />
 
+            <br />
+
             <SimpleForm
               inputProps={{
                 value: this.state.destination,
@@ -169,7 +171,7 @@ class App extends Component {
             <legend>Baby Food Drop-off Points (intermediate stops that can't be the first stop):</legend>
 
             {
-              [1, 2].map(n => (
+              [1, 2].map(n => [
                 <SimpleForm
                   key={n}
                   inputProps={{
@@ -177,8 +179,10 @@ class App extends Component {
                     onChange: address => this.setState({ ['babyFood' + n]: address }),
                     placeholder: 'Baby Food Stop ' + n
                   }}
-                />
-              ))
+                />,
+
+                <br />
+              ])
             }
           </fieldset>
 
