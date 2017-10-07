@@ -1,18 +1,67 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import SimpleForm from './SimpleForm.js'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SimpleForm
+          inputProps={{
+            placeholder: 'Origin'
+          }}
+        />
+
+        <SimpleForm
+          inputProps={{
+            placeholder: 'Destination'
+          }}
+        />
+
+        <table>
+          <thead>
+            <tr>
+              {
+                ['', 1, 2, 3, 4, 5].map(col => (
+                  <th key={col}>{col}</th>
+                ))
+              }
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              ['A', 'B', 'C', 'D', 'E'].map(row => (
+                <tr key={row}>
+                  <th>{row}</th>
+                  {
+                    [1, 2, 3, 4, 5].map(col => (
+                      <td key={col}>
+                        <SimpleForm
+                          inputProps={{
+                            placeholder: row + col
+                          }}
+                        />
+                      </td>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+
+        {
+          [1, 2].map(n => (
+            <SimpleForm
+              key={n}
+              inputProps={{
+                placeholder: 'Baby Food Stop ' + n
+              }}
+            />
+          ))
+        }
       </div>
     );
   }
