@@ -87,7 +87,13 @@ class App extends Component {
 
         <p>
           Alley Cheetah helps you be the fastest cat of your local <a href="http://cranksgiving.org">Cranksgiving</a>.
+        </p>
+
+        <p>
           Fill in the form below, or <button onClick={() => this.autofillDemo()}>use demo values</button> from this <a href={manifest}>manifest</a>.
+        </p>
+
+        <p>
           You can also <button onClick={() => this.clearForm()}>clear the form</button>.
         </p>
 
