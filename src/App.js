@@ -4,6 +4,9 @@ import SimpleForm from './SimpleForm.js'
 import './App.css';
 
 class App extends Component {
+  rows = ['A', 'B', 'C', 'D', 'E']
+  cols = [1, 2, 3, 4, 5]
+
   render() {
     return (
       <div className="App">
@@ -27,7 +30,7 @@ class App extends Component {
           <thead>
             <tr>
               {
-                ['', 1, 2, 3, 4, 5].map(col => (
+                ['', ...this.cols].map(col => (
                   <th key={col}>{col}</th>
                 ))
               }
@@ -36,11 +39,11 @@ class App extends Component {
 
           <tbody>
             {
-              ['A', 'B', 'C', 'D', 'E'].map(row => (
+              this.rows.map(row => (
                 <tr key={row}>
                   <th>{row}</th>
                   {
-                    [1, 2, 3, 4, 5].map(col => (
+                    this.cols.map(col => (
                       <td key={col}>
                         <SimpleForm
                           inputProps={{
