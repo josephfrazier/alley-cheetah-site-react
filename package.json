@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "alley-cheetah": "https://github.com/josephfrazier/alley-cheetah.git",
-    "pretty-ms": "^3.0.1",
+    "humanize-duration": "^3.10.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-places-autocomplete": "^5.4.3",

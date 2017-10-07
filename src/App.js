@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import alleyCheetah from 'alley-cheetah'
-import prettyMs from 'pretty-ms'
+import humanizeDuration from 'humanize-duration'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
@@ -254,7 +254,7 @@ class App extends Component {
           const humanizedDistance = metersToMiles(distance).toFixed(2) + ' miles'
 
           const duration = alleyCheetah.getLegsTotal({route, property: 'duration'})
-          const humanizedDuration = prettyMs(1000 * duration)
+          const humanizedDuration = humanizeDuration(1000 * duration)
 
           const link = alleyCheetah.getMapsLink({origin, destination, waypoints})
           responseBody.push({
