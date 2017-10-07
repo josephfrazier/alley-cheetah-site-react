@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import alleyCheetah from 'alley-cheetah'
+import prettyMs from 'pretty-ms'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
@@ -125,9 +127,97 @@ class App extends Component {
             />
           ))
         }
+
+        <button
+          onClick={() => this.onSubmit(this)}
+        >
+          Submit
+        </button>
+
+        {
+          this.state.loading ? (
+            <p>Loading</p>
+          ) : this.state.responseBody ? (
+            <ul
+              style={{
+                listStyle: 'none'
+              }}
+            >
+              {
+                this.state.responseBody.map(({link, description, routeSortKey, humanizedDistance, humanizedDuration}, i) => (
+                  <li key={link + routeSortKey}>
+                    <a href={link}>
+                      {description} {routeSortKey} ({humanizedDistance}, {humanizedDuration})
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          ) : ''
+        }
       </div>
     );
   }
+
+  onSubmit (self) {
+    const {origin, destination} = self.state
+
+    const waypointGrid = removeEmptyCells(self.rows.map(row =>
+      self.cols.map(col =>
+        self.state[row + col]
+      )
+    ))
+
+    const babyFoodStops = removeEmptyItems([self.state.babyFood1, self.state.babyFood2])
+    const waypointOptions = undefined
+    const memoizeFn = undefined
+    const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    const corsProxy = process.env.REACT_APP_CORS_PROXY
+
+    self.setState({loading: true})
+    alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn, key, corsProxy}).then(routeWaypointPairs => {
+      const routeSortKeys = ['distance', 'duration']
+      let responseBody = []
+      const offsets = {'Shortest': 0, 'Longest': -1}
+      Object.keys(offsets).forEach(function (description) {
+        routeSortKeys.forEach(function (routeSortKey) {
+          const sorted = alleyCheetah.sortRoutesBy({routeWaypointPairs, routeSortKey})
+          const offset = offsets[description]
+          const index = (offset + sorted.length) % sorted.length
+          const {route, waypoints} = sorted[index]
+
+          const distance = alleyCheetah.getLegsTotal({route, property: 'distance'})
+          const humanizedDistance = metersToMiles(distance).toFixed(2) + ' miles'
+
+          const duration = alleyCheetah.getLegsTotal({route, property: 'duration'})
+          const humanizedDuration = prettyMs(1000 * duration)
+
+          const link = alleyCheetah.getMapsLink({origin, destination, waypoints})
+          responseBody.push({
+            link,
+            description,
+            routeSortKey,
+            humanizedDistance,
+            humanizedDuration,
+          })
+        })
+      })
+      self.setState({responseBody, loading: false})
+    })
+  }
+}
+
+function removeEmptyCells (grid) {
+  return removeEmptyItems(grid.map(row => removeEmptyItems(row)))
+}
+
+function removeEmptyItems (list) {
+  return list.filter(item => item.length)
+}
+
+function metersToMiles (meters) {
+  const milesPerMeter = 0.000621371
+  return meters * milesPerMeter
 }
 
 export default App;
