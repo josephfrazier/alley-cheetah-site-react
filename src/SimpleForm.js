@@ -4,7 +4,7 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 class SimpleForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { address: '' }
     this.onChange = (address) => this.setState({ address })
     this.onFocus = () => this.setState({ focused: true })
     this.onBlur = () => this.setState({ focused: false })
