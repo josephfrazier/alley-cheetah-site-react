@@ -7,17 +7,6 @@ class App extends Component {
   rows = ['A', 'B', 'C', 'D', 'E']
   cols = [1, 2, 3, 4, 5]
 
-  constructor (props) {
-    super(props)
-
-    // this.state = this.addGrid('', {
-    //   origin: '',
-    //   destination: '',
-    //   babyFood1: '',
-    //   babyFood2: '',
-    // })
-  }
-
   // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
   state = {
     'origin': 'Hudson Yards Park',
