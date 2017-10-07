@@ -208,6 +208,7 @@ class App extends Component {
             type='button'
             onClick={() => this.onSubmit(this)}
             style={{
+              height: '3rem',
               width: '100%'
             }}
           >
