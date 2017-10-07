@@ -159,12 +159,6 @@ class App extends Component {
           ))
         }
 
-        <button
-          onClick={() => this.onSubmit(this)}
-        >
-          Submit
-        </button>
-
         {
           this.state.loading ? (
             <p>Loading</p>
@@ -186,6 +180,12 @@ class App extends Component {
             </ul>
           ) : ''
         }
+
+        <button
+          onClick={() => this.onSubmit(this)}
+        >
+          Submit
+        </button>
       </div>
     );
   }
