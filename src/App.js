@@ -4,48 +4,71 @@ import prettyMs from 'pretty-ms'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
+import manifest from './manifest.jpg'
 
 class App extends Component {
   rows = ['A', 'B', 'C', 'D', 'E']
   cols = [1, 2, 3, 4, 5]
 
-  // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
-  state = {
-    'origin': 'Hudson Yards Park',
-    'destination': '440 Grand St',
+  constructor (props) {
+    super(props)
 
-    'A1': '221-225 8th Ave, 10011',
-    'A2': '907 8th Ave, NYC',
-    'A3': '289 Columbus Ave, NYC',
-    'A4': '25 University Pl, NYC',
-    'A5': '',
+    this.state = this.addGrid('', {
+      origin: '',
+      destination: '',
+      babyFood1: '',
+      babyFood2: '',
+    })
+  }
 
-    'B1': '512 2nd Ave, NYC',
-    'B2': '452 W 43rd St., NYC',
-    'B3': '1407 Lexington Ave, NYC',
-    'B4': '316 Greenwich St, NYC',
-    'B5': '',
+  clearForm () {
+    this.setState(this.addGrid('', {
+      origin: '',
+      destination: '',
+      babyFood1: '',
+      babyFood2: '',
+    }))
+  }
 
-    'C1': '311 E 23rd St, NYC',
-    'C2': '580 9th Ave, NYC',
-    'C3': '2704 Broadway, NYC',
-    'C4': '5 St. James Pl, NYC',
-    'C5': '',
+  autofillDemo () {
+    // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
+    this.setState({
+      'origin': 'Hudson Yards Park',
+      'destination': '440 Grand St',
 
-    'D1': '10 Union Sq. East, NYC',
-    'D2': '225 W. 57th St, NYC',
-    'D3': '609 Columbus Ave, NYC',
-    'D4': '2217 7th Ave, NYC',
-    'D5': '',
+      'A1': '221-225 8th Ave, 10011',
+      'A2': '907 8th Ave, NYC',
+      'A3': '289 Columbus Ave, NYC',
+      'A4': '25 University Pl, NYC',
+      'A5': '',
 
-    'E1': '',
-    'E2': '',
-    'E3': '',
-    'E4': '',
-    'E5': '',
+      'B1': '512 2nd Ave, NYC',
+      'B2': '452 W 43rd St., NYC',
+      'B3': '1407 Lexington Ave, NYC',
+      'B4': '316 Greenwich St, NYC',
+      'B5': '',
 
-    'babyFood1': '441 West 26th St, NYC',
-    'babyFood2': '137 East 2nd St, NYC'
+      'C1': '311 E 23rd St, NYC',
+      'C2': '580 9th Ave, NYC',
+      'C3': '2704 Broadway, NYC',
+      'C4': '5 St. James Pl, NYC',
+      'C5': '',
+
+      'D1': '10 Union Sq. East, NYC',
+      'D2': '225 W. 57th St, NYC',
+      'D3': '609 Columbus Ave, NYC',
+      'D4': '2217 7th Ave, NYC',
+      'D5': '',
+
+      'E1': '',
+      'E2': '',
+      'E3': '',
+      'E4': '',
+      'E5': '',
+
+      'babyFood1': '441 West 26th St, NYC',
+      'babyFood2': '137 East 2nd St, NYC'
+    })
   }
 
   addGrid (value, result) {
@@ -60,6 +83,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Alley Cheetah</h1>
+
+        <p>
+          Alley Cheetah helps you be the fastest cat of your local <a href="http://cranksgiving.org">Cranksgiving</a>.
+          Fill in the form below, or <button onClick={() => this.autofillDemo()}>use demo values</button> from this <a href={manifest}>manifest</a>.
+          You can also <button onClick={() => this.clearForm()}>clear the form</button>.
+        </p>
+
         <SimpleForm
           inputProps={{
             value: this.state.origin,
