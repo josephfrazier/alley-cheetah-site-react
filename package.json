@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "alley-cheetah": "https://github.com/josephfrazier/alley-cheetah.git",
+    "alley-cheetah": "^0.0.0",
     "humanize-duration": "^3.10.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
