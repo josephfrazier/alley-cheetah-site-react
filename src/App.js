@@ -83,6 +83,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <img
+          src={process.env.REACT_APP_CORS_PROXY}
+          style={{
+            // This is intended only to "wake up" sleeping Heroku-hosted proxies
+            display: 'none'
+          }}
+          alt=''
+        />
+
         <h1>Alley Cheetah</h1>
 
         <p>
