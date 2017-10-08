@@ -180,18 +180,22 @@ class App extends Component {
             <legend>Baby Food Drop-off Points (intermediate stops that can't be the first stop):</legend>
 
             {
-              [1, 2].map(n => [
-                <SimpleForm
+              [1, 2].map(n => (
+                <div
                   key={n}
-                  inputProps={{
-                    value: this.state['babyFood' + n],
-                    onChange: address => this.setState({ ['babyFood' + n]: address }),
-                    placeholder: 'Baby Food Stop ' + n
+                  style={{
+                    marginBottom: '1rem'
                   }}
-                />,
-
-                <br />
-              ])
+                >
+                  <SimpleForm
+                    inputProps={{
+                      value: this.state['babyFood' + n],
+                      onChange: address => this.setState({ ['babyFood' + n]: address }),
+                      placeholder: 'Baby Food Stop ' + n
+                    }}
+                  />
+                </div>
+              ))
             }
           </fieldset>
 
