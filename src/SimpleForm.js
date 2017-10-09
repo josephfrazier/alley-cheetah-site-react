@@ -35,7 +35,10 @@ class SimpleForm extends React.Component {
 
           input: {
             boxSizing: 'border-box',
-            ...(this.state.focused ? {background: 'lightyellow'} : {}),
+            ...(this.state.focused ? {
+              background: 'lightyellow',
+              outline: '999vh solid rgba(0, 0, 0, 0.75)'
+            } : {}),
           },
         }}
       />
