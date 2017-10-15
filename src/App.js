@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import alleyCheetah from 'alley-cheetah'
 import humanizeDuration from 'humanize-duration'
+import persist from './WrapWithLocalStorage.js'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
@@ -280,4 +281,4 @@ function metersToMiles (meters) {
   return meters * milesPerMeter
 }
 
-export default App;
+export default persist(App);
