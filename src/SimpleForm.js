@@ -27,9 +27,12 @@ class SimpleForm extends React.Component {
         styles={{
           root: this.state.focused ? {
             position: 'fixed',
-            top: '1rem',
+            top: 0,
             left: 0,
+            paddingTop: '1rem',
             width: '100%',
+            height: '100%',
+            background: 'rgba(0, 0, 0, 0.75)',
             zIndex: 1,
           } : {},
 
@@ -37,7 +40,6 @@ class SimpleForm extends React.Component {
             boxSizing: 'border-box',
             ...(this.state.focused ? {
               background: 'lightyellow',
-              outline: '999vh solid rgba(0, 0, 0, 0.75)'
             } : {}),
           },
         }}
