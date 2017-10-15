@@ -36,10 +36,16 @@ class SimpleForm extends React.Component {
             zIndex: 1,
           } : {},
 
+          autocompleteContainer: this.state.focused ? {
+            position: 'fixed',
+            top: 'calc(1rem + 40px)'
+          } : {},
+
           input: {
             boxSizing: 'border-box',
             ...(this.state.focused ? {
               background: 'lightyellow',
+              height: '40px',
             } : {}),
           },
         }}
