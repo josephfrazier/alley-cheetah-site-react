@@ -5221,6 +5221,10 @@ react-error-overlay@^2.0.2:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
+react-localstorage-hoc@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-localstorage-hoc/-/react-localstorage-hoc-0.0.1.tgz#493dda5f8c2ed9a2639ff792c2a2701baea5875a"
+
 react-places-autocomplete@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-5.4.3.tgz#321166247a9279b93ff21ee59112836058dda0ba"

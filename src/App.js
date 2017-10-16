@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import alleyCheetah from 'alley-cheetah'
 import humanizeDuration from 'humanize-duration'
-import persist from './WrapWithLocalStorage.js'
+import persist from 'react-localstorage-hoc'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
