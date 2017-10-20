@@ -57,7 +57,10 @@ class App extends Component {
     'E5': '',
 
     'babyFood1': '441 West 26th St, NYC',
-    'babyFood2': '137 East 2nd St, NYC'
+    'babyFood2': '137 East 2nd St, NYC',
+
+    'loading': false,
+    'responseBody': [],
   }
 
   setValues (value, obj) {
