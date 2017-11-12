@@ -222,7 +222,6 @@ class App extends Component {
     ))
 
     const babyFoodStops = removeEmptyItems([self.state.babyFood1, self.state.babyFood2])
-    const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
     self.setState({loading: true})
     fetch('/api', {
@@ -230,7 +229,7 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({origin, destination, waypointGrid, babyFoodStops, key})
+      body: JSON.stringify({origin, destination, waypointGrid, babyFoodStops})
     }).then(response => response.json()).then(({responseBody}) => {
       self.setState({responseBody, loading: false})
     })

@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 app.post('/api', function (req, res) {
   res.set('Content-Type', 'application/json');
 
-  const {origin, destination, waypointGrid, babyFoodStops, key} = req.body;
+  const {origin, destination, waypointGrid, babyFoodStops} = req.body;
+  const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, babyFoodStops, key}).then(routeWaypointPairs => {
     const routeSortKeys = ['distance', 'duration']
