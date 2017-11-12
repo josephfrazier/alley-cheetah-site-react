@@ -16,9 +16,9 @@ app.use(bodyParser.json());
 app.post('/api', function (req, res) {
   res.set('Content-Type', 'application/json');
 
-  const {origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn, key} = req.body;
+  const {origin, destination, waypointGrid, babyFoodStops, key} = req.body;
 
-  alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn, key}).then(routeWaypointPairs => {
+  alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, babyFoodStops, key}).then(routeWaypointPairs => {
     const routeSortKeys = ['distance', 'duration']
     let responseBody = []
     const offsets = {'Shortest': 0, 'Longest': -1}

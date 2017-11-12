@@ -222,8 +222,6 @@ class App extends Component {
     ))
 
     const babyFoodStops = removeEmptyItems([self.state.babyFood1, self.state.babyFood2])
-    const waypointOptions = undefined
-    const memoizeFn = undefined
     const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
     self.setState({loading: true})
@@ -232,7 +230,7 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn, key})
+      body: JSON.stringify({origin, destination, waypointGrid, babyFoodStops, key})
     }).then(response => response.json()).then(({responseBody}) => {
       self.setState({responseBody, loading: false})
     })
