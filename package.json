@@ -1,24 +1,31 @@
 {
-  "name": "alley-cheetah-site-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "alley-cheetah": "^0.0.0",
-    "humanize-duration": "^3.10.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-localstorage-hoc": "^0.0.1",
-    "react-places-autocomplete": "^5.4.3",
-    "react-scripts": "1.0.14"
+  "name": "heroku-cra-node",
+  "version": "1.0.0",
+  "description": "How to use create-react-app with a custom Node API on Heroku",
+  "engines": {
+    "node": "8.9.0"
   },
   "scripts": {
-    "localtunnel": "while true; do lt --port 3000 --subdomain alleycheetah; done",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node server",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
-  "devDependencies": {
-    "localtunnel": "^1.8.3"
-  }
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mars/heroku-cra-node.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT",
+  "devDependencies": {}
 }
