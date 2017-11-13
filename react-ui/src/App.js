@@ -39,7 +39,7 @@ class App extends Component {
     'C1': '311 E 23rd St, NYC',
     'C2': '580 9th Ave, NYC',
     'C3': '2704 Broadway, NYC',
-    'C4': '5 St. James Pl, NYC',
+    'C4': '5 St James Pl, New York, NY 10038',
     'C5': '',
 
     'D1': '10 Union Sq. East, NYC',
