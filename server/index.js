@@ -3,6 +3,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const alleyCheetah = require('alley-cheetah');
 const humanizeDuration = require('humanize-duration');
+var cachePath = require('path').join(__dirname, '..', 'cache');
+var memoize = require('memoize-fs')({ cachePath: cachePath });
+
+var ONE_DAY_IN_MILLISECONDS = 8.64e7;
+var memoizeFn = fun => memoize.fn(fun, { maxAge: ONE_DAY_IN_MILLISECONDS });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,7 +24,7 @@ app.post('/api', function (req, res) {
   const {origin, destination, waypointGrid, babyFoodStops} = req.body;
   const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-  alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, babyFoodStops, key}).then(routeWaypointPairs => {
+  alleyCheetah.getOptimizedRoutes({origin, destination, waypointGrid, babyFoodStops, key, memoizeFn}).then(routeWaypointPairs => {
     const routeSortKeys = ['distance', 'duration']
     let responseBody = []
     const offsets = {'Shortest': 0, 'Longest': -1}
