@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import persist from 'react-localstorage-hoc'
+import { testData } from 'alley-cheetah'
 
 import SimpleForm from './SimpleForm.js'
 import './App.css';
 import manifest from './manifest.jpg'
+
+const { origin, destination, grid, babyFoodStops } = testData
 
 class App extends Component {
   rows = ['A', 'B', 'C', 'D', 'E']
@@ -21,31 +24,31 @@ class App extends Component {
 
   // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
   demoState = {
-    'origin': 'Hudson Yards Park',
-    'destination': '440 Grand St',
+    origin,
+    destination,
 
-    'A1': '221-225 8th Ave, 10011',
-    'A2': '907 8th Ave, NYC',
-    'A3': '289 Columbus Ave, NYC',
-    'A4': '25 University Pl, NYC',
+    'A1': grid[0][0],
+    'A2': grid[0][1],
+    'A3': grid[0][2],
+    'A4': grid[0][3],
     'A5': '',
 
-    'B1': '512 2nd Ave, NYC',
-    'B2': '452 W 43rd St., NYC',
-    'B3': '1407 Lexington Ave, NYC',
-    'B4': '316 Greenwich St, NYC',
+    'B1': grid[1][0],
+    'B2': grid[1][1],
+    'B3': grid[1][2],
+    'B4': grid[1][3],
     'B5': '',
 
-    'C1': '311 E 23rd St, NYC',
-    'C2': '580 9th Ave, NYC',
-    'C3': '2704 Broadway, NYC',
-    'C4': '5 St James Pl, New York, NY 10038',
+    'C1': grid[2][0],
+    'C2': grid[2][1],
+    'C3': grid[2][2],
+    'C4': grid[2][3],
     'C5': '',
 
-    'D1': '10 Union Sq. East, NYC',
-    'D2': '225 W. 57th St, NYC',
-    'D3': '609 Columbus Ave, NYC',
-    'D4': '2217 7th Ave, NYC',
+    'D1': grid[3][0],
+    'D2': grid[3][1],
+    'D3': grid[3][2],
+    'D4': grid[3][3],
     'D5': '',
 
     'E1': '',
@@ -54,8 +57,8 @@ class App extends Component {
     'E4': '',
     'E5': '',
 
-    'babyFood1': '441 West 26th St, NYC',
-    'babyFood2': '137 East 2nd St, NYC',
+    'babyFood1': babyFoodStops[0],
+    'babyFood2': babyFoodStops[1],
 
     'loading': false,
     'responseBody': [],
