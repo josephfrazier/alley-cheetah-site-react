@@ -14,7 +14,7 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
-    "alley-cheetah": "^0.0.0",
+    "alley-cheetah": "^0.0.1",
     "body-parser": "^1.18.2",
     "express": "^4.14.1",
     "humanize-duration": "^3.12.0"

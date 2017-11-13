@@ -13,9 +13,9 @@ accepts@~1.3.4:
     mime-types "~2.1.16"
     negotiator "0.6.1"
 
-alley-cheetah@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/alley-cheetah/-/alley-cheetah-0.0.0.tgz#6c424c6c67c3afb34be46fe6ffad9b357fdea58a"
+alley-cheetah@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/alley-cheetah/-/alley-cheetah-0.0.1.tgz#ac3435336193e01f1d2d3baccd36195f18620eb4"
   dependencies:
     "@google/maps" "^0.3.0"
     sort-on "^1.3.0"
